@@ -71,7 +71,7 @@ const frontendPath = path.join(
 app.use(express.static(frontendPath));
 
 // React Router support
-app.get("/*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(
     path.join(frontendPath, "index.html")
   );

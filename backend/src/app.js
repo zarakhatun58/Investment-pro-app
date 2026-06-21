@@ -71,14 +71,7 @@ const frontendPath = path.join(
 app.use(express.static(frontendPath));
 
 // React Router support
-app.get("*", (req, res) => {
-  if (req.originalUrl.startsWith("/api")) {
-    return res.status(404).json({
-      success: false,
-      message: "API route not found",
-    });
-  }
-
+app.get("/*", (req, res) => {
   res.sendFile(
     path.join(frontendPath, "index.html")
   );

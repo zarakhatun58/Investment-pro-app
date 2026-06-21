@@ -18,7 +18,7 @@ export const register = async (req, res) => {
       password,
       referralCode,
     } = req.body;
-
+    console.log("REGISTER BODY:", req.body);
     const existingUser = await User.findOne({
       $or: [{ email }, { mobile }],
     });
@@ -71,7 +71,7 @@ export const register = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(error);
+    console.error("REGISTER ERROR:", error);
 
     res.status(500).json({
       success: false,

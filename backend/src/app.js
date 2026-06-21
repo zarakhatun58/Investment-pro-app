@@ -11,12 +11,19 @@ import planRoutes from "./routes/planRoutes.js";
 import roiRoutes from "./routes/roiRoutes.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./docs/swagger.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app =
     express();
 
 app.use(json());
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(helmet());
 
 app.use(morgan("dev"));
@@ -52,7 +59,30 @@ app.use(
   "/api/plans",
   planRoutes
 );
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// React build folder
+const frontendPath = path.join(
+  __dirname,
+  "../../frontend/dist"
+);
+
+app.use(express.static(frontendPath));
+
+// React Router support
+app.get("*", (req, res) => {
+  if (req.originalUrl.startsWith("/api")) {
+    return res.status(404).json({
+      success: false,
+      message: "API route not found",
+    });
+  }
+
+  res.sendFile(
+    path.join(frontendPath, "index.html")
+  );
+});
 
 
 app.use(errorHandler);

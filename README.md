@@ -89,9 +89,9 @@ WalletTransaction
 
 ### Authentication
 
-POST /api/auth/register
-POST /api/auth/login
-GET /api/auth/profile
+POST /api/register
+POST /api/login
+GET /api/profile
 
 Authentication is secured using JWT tokens.
 Passwords are hashed using bcryptjs.

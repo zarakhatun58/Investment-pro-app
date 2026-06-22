@@ -101,7 +101,7 @@ const swaggerDocument = {
   },
 
   paths: {
-    "/api/auth/register": {
+    "/api/register": {
       post: {
         tags: ["Authentication"],
         summary: "Register User",
@@ -131,7 +131,7 @@ const swaggerDocument = {
       },
     },
 
-    "/api/auth/login": {
+    "/api/login": {
       post: {
         tags: ["Authentication"],
         summary: "Login User",

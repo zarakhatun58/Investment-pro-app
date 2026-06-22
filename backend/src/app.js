@@ -33,7 +33,7 @@ swaggerUi.serve,
 swaggerUi.setup(swaggerDocument)
 );
 app.use(
-    "/api/auth",
+    "/api",
     authRoutes
 );
 

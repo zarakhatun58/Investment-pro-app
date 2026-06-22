@@ -53,7 +53,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         error: null,
       });
 
-      const res = await api.post("/auth/login", {
+      const res = await api.post("/login", {
         email,
         password,
       });
@@ -90,7 +90,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       });
 
       const res = await api.post(
-        "/auth/register",
+        "/register",
         data
       );
 
@@ -125,7 +125,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       if (!token) return;
 
       const res =
-        await api.get("/auth/profile");
+        await api.get("/profile");
 
       set({
         user: res.data.user,
